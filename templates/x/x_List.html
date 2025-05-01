@@ -1,0 +1,91 @@
+ {% extends 'base.html' %} 
+<!-- {% load util_tags %} -->
+
+{% block content %}
+
+{# --- Main --- #}
+<div class="main">
+    <div class="main-header">
+        <img src="{{ STATIC_URL }}img/X_logo.jpeg" class="logo" />
+        <h1>Home</h1>
+    </div>
+    
+    {# --- x Post --- #}
+    <div class="x-post">
+        <div class="my-icon">
+            <img src="{{ STATIC_URL }}img/sample-woman.jpg" class="">
+        </div>
+        <div class="input-area">
+            <form action="/xAdd/" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Your name" maxlength="14" required>
+                <textarea name="body" placeholder="What's happening?" maxlength="140" required></textarea>
+                <div class="bottom-area">
+                    <div class="mb-0">
+                        <input class="form-control form-control-sm" name="image" type="file">
+                    </div>
+
+                    <button class="btn" type="submit">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% if xs.count == 0 %}
+        <p class="p3">There is no x now.</p>
+    {% else %}
+        {% for x in xs %}
+
+        {# --- x List --- #}
+        <div class="x-list">
+            <div class="x">
+                <div class="user">
+                    <a href="#">
+                        <img src="{{ STATIC_URL }}img/sample-woman.jpg" class="">
+                    </a>
+                </div>
+                <div class="content">
+                    <div class="name">
+                        <a href="#" class="">
+                            <span class="nickname">
+                                {{ x.name }} 
+                                </span>
+                             </span>
+                            <span class="datetime">
+                               {% util_date x.created_at|date:"Y/m/d H:i:s" %}
+                            </span>
+                        </a>
+                        {# --- Menu for respective xs --- #}
+                        <img src="{{ STATIC_URL }}img/icon-small-menu.svg" class="small-menu js-popover"
+                            data-bs-container="body"
+                            data-bs-toggle="popover"
+                            data-bs-placement="left"
+                            data-bs-content="<a href='/xEditView/{{ x.id }}/'>Edit</a><br><a href='/xDelete/{{ x.id }}/'>Delete</a>"
+                            data-bs-html="true"
+                           >
+                    </div>
+                    <p>
+                        {{x.body}}
+                    </p>
+                    {% if x.image is not Null %}
+                        <a href="{{ x.image.url }}" target="_blank">
+                            <img class="post-image" src="{{ x.image.url }}">
+                        </a>
+                    {% endif %}
+                    <div class="icon-list">
+                        <div class="like js-like" data-x-id="{{ x.id }}">
+                            <img src="{{ STATIC_URL }}img/icon-heart-gray.svg">
+                        </div>
+                        <div class="like-count js-like-count">
+                            {{ x.like_count }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+</div>
+
+{% endblock %}

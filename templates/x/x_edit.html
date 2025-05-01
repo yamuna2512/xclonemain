@@ -1,0 +1,39 @@
+ {% extends 'base.html' %}
+ <!-- {% load util_tags %}  -->
+
+{% block content %}
+
+{# --- Main --- #}
+<div class="main">
+    <div class="main-header">
+        <img src="{{ STATIC_URL }}img/X_logo.jpeg" class="logo" />
+        <h1>Edit</h1>
+    </div>
+
+    {# --- Edit Area --- #}
+    <div class="x-post">
+        <div class="my-icon">
+            <img src="{{ STATIC_URL }}img/sample-woman.jpg" class="">
+        </div>
+        <div class="input-area">
+            <form action="/xEditView/{{ x.id }}/" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Your name" value="{{ x.name }}" maxlength="14" required>
+                <textarea name="body" placeholder="What's happening?" maxlength="140" required>{{ x.body }}</textarea>
+                {% if x.image is not Null %}
+                    <img class="edit-image" src="{{ x.image.url }}">
+                {% endif %}
+                <div class="bottom-area">
+                    <div class="mb-0">
+                        <input class="form-control form-control-sm" name="image" type="file">
+                    </div>
+                    <a href="/" class="btn btn-gray">Cancel</a>
+                    <button class="btn" type="submit">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
