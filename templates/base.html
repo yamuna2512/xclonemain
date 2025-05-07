@@ -1,33 +1,52 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-    <head>
-        <title>X Clone</title>
+<head>
+    <title>X Clone</title>
     
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <link rel="icon" href="{{ STATIC_URL }}img/image.png" />
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <!-- Style CSS -->
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        
-    
-        <!-- JQuery -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    </head>
-    <body class="home">
-        <div class="container">
-            {% block content %} 
-                {{ content }} 
-            {% endblock %}
-        </div>
-    
-        <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    <!-- ✅ CORRECT favicon static usage -->
+    <link rel="icon" type="image/png" href="{% static 'img/image.png' %}">
+  
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+          crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="home">
+
+    <div class="container">
+        {% block content %}
+            {{ content }}
+        {% endblock %}
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/like.js' %}?v=1"></script>
+
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+            crossorigin="anonymous"></script>
+
     <!-- Popover JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <!-- <script>
+        $(function () {
+            $('.js-popover').popover({
+                container: 'body'
+            })
+        })
+    </script> -->
     <script>
         $(function() {
             $('.js-popover').popover({
@@ -35,18 +54,19 @@
             })
         })
     </script>
+      
 
-    <!-- Like JS -->
     {% csrf_token %}
+    {% load static %}
     <script>
-        const JS_CSRFTOKEN = document.querySelector('[name=csrfmiddlewaretoken]').value;
-        const JS_ICON_HEART_GRAY = '{{ STATIC_URL }}img/icon-heart-gray.svg';
-        const JS_ICON_HEART_BLUE = '{{ STATIC_URL }}img/red-heart-11121.svg';
+        // const JS_CSRFTOKEN = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const JS_CSRFTOKEN = '{{ csrf_token }}';
+        const JS_ICON_HEART_GRAY = "{% static 'img/icon-heart-gray.svg' %}";
+        const JS_ICON_HEART_BLUE = "{% static 'img/red-heart-11121.svg' %}";
     </script>
-    <script src="{{ STATIC_URL }}js/like.js?v=1"></script>
-</body>
 
+    <!-- Like Script -->
+    <script src="{% static 'js/like.js' %}?v=1"></script>
+
+</body>
 </html>
-    </body>
-    
-    </html>

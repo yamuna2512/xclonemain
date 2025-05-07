@@ -1,22 +1,24 @@
- {% extends 'base.html' %} 
-<!-- {% load util_tags %} -->
+ {% extends 'base.html' %}
+ {% load util_tags %}  
+ {% util_date x.created_at %}
+{% load static %}
 
 {% block content %}
 
 {# --- Main --- #}
 <div class="main">
     <div class="main-header">
-        <img src="{{ STATIC_URL }}img/X_logo.jpeg" class="logo" />
+        <img src="{% static 'img/X_logo.jpeg' %}" class="logo" />
         <h1>Home</h1>
     </div>
     
     {# --- x Post --- #}
     <div class="x-post">
         <div class="my-icon">
-            <img src="{{ STATIC_URL }}img/sample-woman.jpg" class="">
+            <img src="{% static 'img/sample-icon.jpg' %}" class="">
         </div>
         <div class="input-area">
-            <form action="/xAdd/" method="POST" enctype="multipart/form-data">
+            <form action="{% url 'x_add' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="text" name="name" placeholder="Your name" maxlength="14" required>
                 <textarea name="body" placeholder="What's happening?" maxlength="140" required></textarea>
@@ -41,7 +43,7 @@
             <div class="x">
                 <div class="user">
                     <a href="#">
-                        <img src="{{ STATIC_URL }}img/sample-woman.jpg" class="">
+                        <img src="{% static 'img/sample-icon.jpg' %}" class="">
                     </a>
                 </div>
                 <div class="content">
@@ -49,23 +51,27 @@
                         <a href="#" class="">
                             <span class="nickname">
                                 {{ x.name }} 
-                                </span>
-                             </span>
-                            <span class="datetime">
-                               {% util_date x.created_at|date:"Y/m/d H:i:s" %}
                             </span>
+                            <span class="datetime">
+                                {% util_date x.created_at|date:"Y/m/d H:i:s" %}
+                             </span>
                         </a>
                         {# --- Menu for respective xs --- #}
-                        <img src="{{ STATIC_URL }}img/icon-small-menu.svg" class="small-menu js-popover"
-                            data-bs-container="body"
-                            data-bs-toggle="popover"
-                            data-bs-placement="left"
-                            data-bs-content="<a href='/xEditView/{{ x.id }}/'>Edit</a><br><a href='/xDelete/{{ x.id }}/'>Delete</a>"
-                            data-bs-html="true"
-                           >
+                        <img src="{% static 'img/icon-small-menu.svg' %}" class="small-menu js-popover"
+                        data-bs-container="body"
+                        data-bs-toggle="popover"
+                        data-bs-placement="left"
+                        
+                       
+                        data-bs-content="<a href='{% url 'x_edit' x.id %}'>Edit</a><br>
+                        
+                        
+                         <a href='{% url 'x_delete' x.id %}'>Delete</a>" 
+                        data-bs-html="true"
+                        >
                     </div>
                     <p>
-                        {{x.body}}
+                        {{ x.body }}
                     </p>
                     {% if x.image is not Null %}
                         <a href="{{ x.image.url }}" target="_blank">
@@ -73,19 +79,20 @@
                         </a>
                     {% endif %}
                     <div class="icon-list">
-                        <div class="like js-like" data-x-id="{{ x.id }}">
-                            <img src="{{ STATIC_URL }}img/icon-heart-gray.svg">
-                        </div>
-                        <div class="like-count js-like-count">
+                        <span class="like js-like" data-x-id="{{ x.id }}">
+                            <img src="{% static 'img/icon-heart-gray.svg' %}" alt="like icon">
+                        </span>
+                        <span class="like-count js-like-count">
                             {{ x.like_count }}
-                        </div>
+                        </span>
                     </div>
-                </div>
+
+                    
             </div>
         </div>
         {% endfor %}
     {% endif %}
 
-</div>
-
+</div>
+<script src="{% static 'js/like.js' %}?v=1"></script>
 {% endblock %}
