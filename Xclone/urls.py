@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from x.views import xListView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('second/', include('x.urls')),
+    path('', xListView, name='post1'),
+
 ]

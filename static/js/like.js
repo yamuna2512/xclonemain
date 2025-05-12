@@ -1,3 +1,4 @@
+
 $(function() {
   // Global valuable
   var is_liked = false;
