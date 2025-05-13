@@ -1,0 +1,279 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: sans-serif;
+    background-color: black;
+    
+}
+
+.btn {
+    background-color: rgb(29, 161, 242);
+    height: 35px;
+    border-radius: 9999px;
+    padding: 0 16px;
+}
+
+.btn-gray {
+    color: white;
+    background-color: rgb(249, 55, 55);
+    display: grid;
+    place-items: center;
+
+}
+
+.btn:hover {
+    color: white;
+}
+
+a {
+    font-size: 13px;
+    color: rgb(29, 161, 242);
+    text-decoration: none;
+}
+
+a.btn-gray {
+    color: white;
+}
+
+a:visited {
+    color: rgb(29, 161, 242);
+}
+
+a.btn-gray:visited {
+    color: white;
+}
+
+.container {
+    padding: 12px 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.main {
+    width: 600px;
+    border: 1px solid rgb(113, 118, 123);
+}
+
+
+/*
+Main
+*************************************/
+
+.main {
+    text-align: left;
+}
+
+.main .main-header {
+    display: flex;
+    align-items: center;
+}
+
+.main .main-header .logo {
+    width: 45px;
+}
+
+.main .main-header h1 {
+    font-size: 25px;
+    line-height: 20px;
+    font-weight: bold;
+    margin-left: 50px;
+    color: white;
+}
+
+.main .main-header {
+    padding: 10px;
+    border-bottom: 1px solid rgb(113, 118, 123);
+}
+
+
+/*
+Home
+*************************************/
+
+
+
+.home .x-post {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid rgb(113, 118, 123);
+}
+
+.home .x-post .my-icon {
+    width: 80px;
+    padding: 5px 15px 10px 10px;
+}
+
+.home .x-post .my-icon img {
+    width: 100%;
+    border-radius: 50%;
+    border: 1px solid rgb(113, 118, 123);
+}
+
+.home .x-post .input-area {
+    width: calc(100% - 80px);
+    flex-grow: 1;
+}
+
+.home .x-post .edit-image {
+    width: 50%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 1px solid rgb(113, 118, 123);
+}
+
+.home .x-post .input-area input[type=text] {
+    border: 0px;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.home .x-post .input-area input[type=text]:focus {
+    /* Hide the border during focus */
+    outline: none;
+}
+
+.home .x-post .input-area textarea {
+    border: 1px solid rgb(184, 181, 181);
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    /* Hide the customizing size area */
+    resize: none;
+    border-radius: 7px;
+}
+
+.home .x-post .input-area textarea:focus {
+    /* Hide the border during focus */
+    outline: none;
+    height: 100px;
+}
+
+.home .x-post .input-area .bottom-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+    padding-top: 8px;
+}
+
+
+
+
+.home .x-list .x {
+    padding: 10px;
+    display: flex;
+    border-bottom: 1px solid rgb(113, 118, 123);
+}
+
+.home .x-list .x .user {
+    width: 80px;
+    padding: 5px 15px 10px 10px;
+}
+
+.home .x-list .x .user img {
+    width: 100%;
+    border-radius: 50%;
+    border: 1px solid rgb(235, 238, 240);
+}
+
+.home .x-list .x .name {
+    padding-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.home .x-list .x .name a {
+    color: rgb(21, 32, 43);
+}
+
+.home .x-list .x .name a .nickname {
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.home .x-list .x .name a .datetime {
+    padding-left: 10px;
+    color: white;
+    font-size: 14px;
+}
+
+.home .x-list .x .name .small-menu {
+    padding-right: 10px;
+}
+
+.home .x-list .x .content {
+    width: calc(100% - 60px);
+}
+
+.home .x-list .x .content p {
+    font-size: 16px;
+    padding: 8px 0 0 0;
+    margin-bottom: 8px;
+    color: white;
+}
+.p3{
+    text-align: center;
+    margin-top: 2vw;
+    color: white;
+}
+
+.home .x-list .x .content img.post-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    margin-top: 10px;
+    border: 1px solid rgb(197, 199, 201);
+}
+
+.home .x-list .x .content .icon-list {
+    display: flex;
+    margin-top: 15px;
+}
+
+.home .x-list .x .content .icon-list .comment img {
+    width: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.home .x-list .x .content .icon-list .comment-count {
+    width: 25px;
+    margin-right: 20px;
+    padding-top: 2px;
+    color: #474747;
+}
+
+.home .x-list .x .content .icon-list .like img {
+    width: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.home .x-list .x .content .icon-list .like-count {
+    width: 25px;
+    padding-top: 2px;
+    color: white;
+}
+
+
+@media screen and (max-width:500px) {
+    .home .x-list .x .user {
+        width: 60px;
+        padding: 5px 10px 10px 5px;
+    }
+    .bottom-area .btn {
+        margin-top: 10px;
+    }
+}
